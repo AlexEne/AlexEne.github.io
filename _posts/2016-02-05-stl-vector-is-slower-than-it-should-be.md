@@ -3,8 +3,8 @@ layout: post
 ---
 
 This popped up while I was working on a presentation about the importance of CPU cache and the habit of checking your assumptions. Yes! I did mash together those two subjects. Maybe soon™ I will either do a youtube video of that presentation, or write a post about it, but now I want to talk about what I believe is an interesting performance issue with vector::insert.
-<strong>
-TLDR version for lazy people: Microsoft's vector::insert is not as cache-friendly as it could be in some cases. It also misses the opportunity to use one single call to memmove in the case of trivially copyable data types.</strong>
+
+**TLDR version for lazy people: Microsoft's vector::insert is not as cache-friendly as it could be in some cases. It also misses the opportunity to use one single call to memmove in the case of trivially copyable data types.**
 
 For the not so lazy people, I invite you on a journey where we get to see a glimpse of what's in the lower levels of Microsoft's STL implementation.
 
@@ -89,7 +89,8 @@ However, let's not panic about it yet. Microsoft STL's STL - Stephan T. Lavavej
 [knows about this](https://twitter.com/StephanTLavavej/status/695013465342083072) performance issue, and I am sure they will fix it in a reasonable timeline.
 As a side-note, the 2015 implementation is way faster than the other version that I checked (Visual Studio 2012, Update 5). But in 2012 I couldn't go this deep with my investigation since the code was filled with defines, crazy names, and things that just confused me and were a pain to debug (defines mixed with templates and other horrors).
 
-**There is also a simple workaround for this: Just don't use the r-value reference overload for vector::insert. I know, &amp;&amp; doesn't really pop out.**
+**There is also a simple workaround for this: Just don't use the r-value reference overload for vector::insert. I know, &amp;&amp; doesn't really pop out.**  
+
 Instead of doing this:
 
 ```
