@@ -15,8 +15,3 @@ And this is a picture of me looking at a painting of a suspicious bust, a nude a
 ![me](/images/me.png)
 
 Opinions expressed here are my own, they don’t represent the view of my employer(s)  etc…
-
-### Contact me
-
-[alex.ene0x11@gmail.com](mailto:alex.ene0x11@gmail.com)  
-[twitter](https://twitter.com/_AlexEne_)
