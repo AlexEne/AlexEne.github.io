@@ -1,3 +1,7 @@
+---
+layout: post
+---
+
 Some time ago I was quite bored so I wanted to learn something new. 
 Probably inspired by the [Steam Dev Days talks](https://www.youtube.com/user/SteamworksDev/videos), 
 OpenGL seemed like a nice idea and started reading about it. 
