@@ -23,9 +23,9 @@ Most of this project is done using compute shaders, so here I mostly learned how
 Project: [https://github.com/AlexEne/rust-chip8](https://github.com/AlexEne/rust-chip8).  
 
 I found out that doing a chip8 emulator is one of the best ways to start learning a new language. 
-The reason it works so well is because it only uses a few language constructs: for/while/match. It also gets you used to the simple data structures like arrays and maps. You also go in a bit more detail by taking a dependency on another crate (in my case minifb).
+The reason it works so well is because it only uses a few language constructs: for/while/match. It gets you used to the simple data structures like arrays and maps. You also go in a bit more detail by taking a dependency on another crate (in my case minifb).
 
-It's also a lot of fun since you can find binaries for chip8 games that you can later run inside your emulator.
+It's a lot of fun since you can find binaries for chip8 games that you can run inside your emulator.
 
 ![rust-chip8](/images/rust-chip8.png)
 
@@ -33,7 +33,7 @@ It's also a lot of fun since you can find binaries for chip8 games that you can 
 
 [Advent of code](https://adventofcode.com/) is a programming competition running in at the end of the year, and it consists of daily challenges starting from 1 December to 25 December.  
 This is great to learn about data structures, file I/O, string manipulation.
-I have none of my solutions from last year, but I did finish quite a few of the challenges, but since it was near the holidays I didn't manage to finish it.  
+I don't have the solutions from last year, but I did finish quite a few of the challenges.  
 It's really fun when more people are participating and you have a mini-leaderboard where you battle with your friends.
 
 ![advent-of-code](/images/advent-of-code.png)
@@ -78,6 +78,7 @@ ECS worked great for me and now I have a bunch of features at this early stage:
 - Hunger/Thirst and other effects.
 - Serialization
 - Armor and equipment
+- Pathfinding
 
 Working on this I learned about traits, serialization, profiling (more on this below)
 
@@ -91,12 +92,11 @@ Project [https://github.com/AlexEne/rust_hawktracer](https://github.com/AlexEne/
 
 Hawktracer is a lightweight intrusive profiler developed by my coleague at Amazon that was open-sourced a while ago [https://github.com/amzn/hawktracer](https://github.com/amzn/hawktracer).  
 While working on my game I had some performance issues that were not easy to diagnose using a sampling profiler and since the original hawktracer project offers a C-API, I have started this crate in order to make rust integration more pleasant.  
-
 It has no runtime overhead if you disable profiling since everything is macro-based and if you disable it you don't get any code generated.  
 
 I learned a lot about macros, binding generation, cmake crate. Currently I am still working on this in order to get it at an acceptable quality to be an actual crate. 
 
-You can find more info on how to integrate it on the above github page, and I encourage you to send feedback.
+You can find more info on how to integrate it on the above github page, and I encourage you to send feedback and suggest improvements.
 
 ![rust-hawktracer](/images/rust-hawktracer.png)
 
