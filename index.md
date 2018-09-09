@@ -7,6 +7,6 @@
 #
 layout: home
 ---
-## Welcome to my blog
 
+Welcome to my blog.  
 You can expect to find various posts on programming, all of them related to side-projects that are most likely on my github.
