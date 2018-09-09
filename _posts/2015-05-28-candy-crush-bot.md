@@ -59,26 +59,26 @@ How big is N for our picture? Well it's `Width*Height*3` (3 for r, g, b). But fo
 What can we do if we have two points in space ?
 Let's say we have the two points:
 <div>
-\begin{equation}
+$$
 A = (x_1, y_1)
 B = (x_2, y_2)
-\end{equation}
+$$
 </div>
 We can get the distance between these two points using the well-known formula:
 
 <div>
-\begin{equation}
+$$
 d = \sqrt{( x_1- x_2 )^2 + (y_1-y_2)^2}
-\end{equation}
+$$
 </div>
 
 In N dimensions this becomes:
 <div>
-\begin{equation}
+$$
 A = (a_1, a_2, a_3, a_4, ... ,a_n)
 B = (b_1, b_2, b_3, b_4, ..., b_n)
 d(A, B) = \sqrt{(a_1-b_1)^2 + (a_2-b_2)^2 + (a_3-b_3)^2 + (a_4-b_4)^2 + ... (a_n-b_n)^2}
-\end{equation}
+$$
 </div>
 
 So if we introduce a third point C in the mix we can determine if C is closer to A or B using the formula above.
