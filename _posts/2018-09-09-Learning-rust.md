@@ -4,15 +4,15 @@ layout: post
 
 While I didn't post anything on my blog I have been working on a lot of fun projects in my spare time. Most notably, I have been learning Rust. Part of doing that resulted in a few neat side-projects that I will talk about here in more detail.
 This is mostly my journey on learning a new language, I am sure there are other ways, but this worked for me.  
-I started with the rust [book](https://doc.rust-lang.org/book/) and then I continued to learn using a project-based approach, and this worked great for me.  
+I started with the rust [book](https://doc.rust-lang.org/book/) and then I continued to learn using a project-based approach.  
 Below you will see a few of the projects I did along the way with a few words on how they helped me learn various parts of the language.
 
 ## Particles
 
 Project: [https://github.com/AlexEne/rust-particles](https://github.com/AlexEne/rust-particles)
 
-After learning the basics, I have started porting one of my old C++ projects to rust. For me this was a great way to compare the two languages in a real-life situation, where I had to use OpenGL, SDL, and other C libraries.  
-I don't fully recommned starting with this kind of project since it might not be the smoothest introduction to a new language, but it worked great for me.  
+After learning the basics, I have started porting one of my old C++ projects to rust. For me this was a good way to compare the two languages in a real-life situation, where I had to use OpenGL, SDL, and other C libraries.  
+I don't fully recommned starting with this kind of project since it might not be the smoothest introduction to a new language but I found it useful.  
 
 Most of this project is done using compute shaders, so here I mostly learned how to use other C libraries from Rust.
 
@@ -32,7 +32,7 @@ It's a lot of fun since you can find binaries for chip8 games that you can run i
 ## Advent of code
 
 [Advent of code](https://adventofcode.com/) is a programming competition running in at the end of the year, and it consists of daily challenges starting from 1 December to 25 December.  
-This is great to learn about data structures, file I/O, string manipulation.
+This is can help you learn about data structures, file I/O, string manipulation.
 I don't have the solutions from last year, but I did finish quite a few of the challenges.  
 It's really fun when more people are participating and you have a mini-leaderboard where you battle with your friends.
 
@@ -46,7 +46,7 @@ Project: [https://github.com/AlexEne/raytracing-rs](https://github.com/AlexEne/r
 This is a really popular topic nowdays, with new tech like RTX popping up. I stumbled upon the [Raytracing in one weekend](https://www.amazon.co.uk/gp/product/B01B5AODD8) book and this was another fun project that I did in rust, probably the first one where I used parallelism (using [rayon](https://github.com/rayon-rs/rayon)).
 You get to learn about multithreading, a bit of ray-sphere intersections, materials and basic raytracing theory.  
 I highly recommend the following books: [Raytracing the next week](https://www.amazon.co.uk/Ray-Tracing-Next-Week-Minibooks-ebook/dp/B01CO7PQ8C/) and [Raytracing the rest of your life](https://www.amazon.co.uk/gp/product/B01DN58P8C/).
-Both have great information to get you started and then if you really are into this field, you can move on to [Physically Based Rendering from Theory to Implementation](https://www.amazon.co.uk/Physically-Based-Rendering-Theory-Implementation/dp/0123750792)
+Both have a lot of information to get you started and then if you really are into this field, you can move on to [Physically Based Rendering from Theory to Implementation](https://www.amazon.co.uk/Physically-Based-Rendering-Theory-Implementation/dp/0123750792)
 
 In this project I learned how threads work in rust and how pleasant and comforting is to get thread-related errors at compile time.
 
@@ -70,7 +70,7 @@ It uses the following libraries:
 - Rayon
 - and a few others
 
-ECS worked great for me and now I have a bunch of features at this early stage:
+ECS worked amazingly well for me and now I have a bunch of features at this early stage:
 - Terrain generation
 - Combat
 - Build tree
