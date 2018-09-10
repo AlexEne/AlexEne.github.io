@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 ---
 
 While I didn't post anything on my blog I have been working on a lot of fun projects in my spare time. Most notably, I have been learning Rust. Part of doing that resulted in a few neat side-projects that I will talk about here in more detail.
