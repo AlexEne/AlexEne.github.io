@@ -171,7 +171,7 @@ glDrawArrays( GL_POINTS, 0, m_ParticleCount );
 
 That's it. It just selects the shader program, binds the vertex array object and issues a glDrawArrays call. And this is the end result:
 
-[TODO] - Add image here
+![particles](/images/particles.png)
 
 Right now particles also collide with some spheres. These spheres are actually just a position and a radius that are sent to the compute shader as of uniforms. At the beginning of the program I just spawn them randomly. The compute shader itself is made by a lot of hacks and hardcoded parts. Each compute shader invocation takes care of updating a single particle. One could imagine having it update let's say 16 particles inside a for loop, and thus lowering the total number of workgroups needed.
 
