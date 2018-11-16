@@ -108,6 +108,6 @@ That's not to say that we shouldn't promote these as options and acknowledge pro
 
 ## Conclusion
 
-I am really excited for the core team to announce more structured processes for spinning up working groups in 2019 so that we can move this group forward!
-
 Game development is a field that's already full of many unknowns and risks. The ultimate goal of this Game Development Working Group is to take away as many risks as possible by making Rust for game development a viable and I would hope default option.
+
+I am really excited for the core team to announce more structured processes for spinning up working groups in 2019 so that we can move this group forward!
