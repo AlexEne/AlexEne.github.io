@@ -40,7 +40,7 @@ There's no _it works by the power of luck_ here and sometimes that feels bad.
 
 People have explained it way better than me here and there are resources available, but it's something to keep in mind - for more info and solutions see Catherine West's excellent [Rustconf 2018 keynote](https://www.youtube.com/watch?v=aKLntZcp27M)
 
-In this space, there are also some Rust game engines but compared to Unity tutorials they have a higher barrier of entry. For example, for the [Amethist engine](https://www.amethyst.rs/), a simple game of Pong starts out with the following code:
+In this space, there are also some Rust game engines but compared to Unity tutorials they have a higher barrier of entry. For example, for the [Amethyst engine](https://www.amethyst.rs/), a simple game of Pong starts out with the following code:
 ```
 impl<'a, 'b> SimpleState<'a, 'b> for Pong {
 }
@@ -49,7 +49,7 @@ _What is that?_ You might cry, but have no fear, I kind of had the same reaction
 
 Do I need that even for pong? I would bet that you can rewrite something like Doorkickers or Stardew Valley or any other 2D game in rust without having to annotate many lifetimes.
 
-Amethist is shaping to be a nice engine but if all you want to do is a 2D game with simple rules, you could get away with simpler abstractions.
+Amethyst is shaping to be a nice engine but if all you want to do is a 2D game with simple rules, you could get away with simpler abstractions.
 
 Possibly my point is that there is enough space for more engines to appear and address various targets.
 
@@ -100,7 +100,7 @@ As a general note, I don't think what's in the long term category has to start a
 
 ## Things that we should think about
 
-It has been suggested to have a sort of consensus around Amethist or another game engine or libraries like specs as the go-to engine/frameworks for game development in Rust.
+It has been suggested to have a sort of consensus around Amethyst or another game engine or libraries like specs as the go-to engine/frameworks for game development in Rust.
 
 They are amazing projects and there are advantages in having a one-engine / library focused ecosystem (from the point of discoverability and community), but I think that diversity is important, not only at your workplace and life, but also in the tooling and framework space. Not all games have the same requirements and not all games need engines, so it's important to be open because it's quite challenging to create a one-size fits all solution.
 
