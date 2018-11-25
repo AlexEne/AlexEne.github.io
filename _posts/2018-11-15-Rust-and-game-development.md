@@ -1,7 +1,3 @@
----
-layout: post
----
-
 ## Why?
 
 Rust is excellent for performance crucial applications that run on multi-processor architectures and these two aspects are also critical for game development. Rust has already seen a bunch of interest from games developers like [Chucklefish](https://www.rust-lang.org/pdfs/Rust-Chucklefish-Whitepaper.pdf), [Embark Studios](https://twitter.com/repi/status/1060469377500274689), [Ready at Dawn](https://twitter.com/andreapessino/status/1021532074153394176?lang=en), etc. - but in order to really excel I'd love to organize some structured efforts to improve the ecosystem and I think it would be great if the 2019 roadmap will include game development.
