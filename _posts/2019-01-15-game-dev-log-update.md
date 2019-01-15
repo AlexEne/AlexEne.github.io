@@ -258,7 +258,7 @@ fn test_hungry_dwarf_eats_and_finishes_task() {
 
 ## One year
 
-![One year](/images/dwarf_game/first_commit.png)
+![One_year](/images/dwarf_game/first_commit.png)
 
 I started this almost exactly one year ago and I commited changes to the project constantly. How do I manage to stay motivated for this long?
 
