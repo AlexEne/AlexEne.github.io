@@ -15,7 +15,7 @@ So this is how the game looks on the current build.
 
 The game has an **E**ntity-**C**omponent-**S**ystem (**ECS**) architecture. There are many places where this is explained better so I'm going to be lazy and just link them here: 
 
-- Overwatch Gameplay architecture [gdc vault](https://www.gdcvault.com/play/1024001/-Overwatch-Gameplay-Architecture-and)
+- [Overwatch Gameplay architecture](https://www.youtube.com/watch?v=W3aieHjyNvw)
 - RustConf 2018 closing keynote as [video](https://www.youtube.com/watch?v=P9u8x13W7UE) or [text](https://kyren.github.io/2018/09/14/rustconf-talk.html).
 
 My quick TLDR explanation is as follows. This architecture is formed out of three parts:  
