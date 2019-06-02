@@ -55,13 +55,15 @@ For example a path from the start point `S` to the destination `D` will look lik
 
 ## Depth & digging
 
-Handling depth is trivial, for each cell (not only the edges) we check if there is a cell below or above that we are connected to. These cells are kept in case we need to descend to a lower level as we search for a path to our destination.  
-Handling terrain destruction is simple as we only need to re-compute the high-level connections in the cell where the digging happened. 
+Handling depth is simple. For each cell (not only the edges) we check if there is a cell below or above that we are connected to. These cells are kept in case we need to descend to a lower level as we search for a path to our destination.  
+Handling terrain destruction is simple as we only need to re-compute the high-level connections in the cell where the digging happened.
 
 ## The end
 
 So this is our short journey into HPA*. It is a great way to speed up pathfinding for your games, especially if you're using A* as this comes at an easy integration with your existing pathfinding code. You have to change the core code just slightly and most of the work is done in the initial high-level cell generation.  
 Other ways to speed up pathfinding is using alternative data structures and things like nav meshes.  
+
+It's also important to remember that this can go to more than 1 level of hierarchy above the low-level cells. I didn't need to generate another level above this one, but I think for certain games it may be useful to keep in mind that you can extend this.
 
 I also explained this on my stream a while back so if you like this post in a video format you can watch that explanation[here](https://youtu.be/qSbSb8vMbLI?t=915)
 
