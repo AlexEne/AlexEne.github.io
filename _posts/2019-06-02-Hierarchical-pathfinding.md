@@ -2,7 +2,7 @@
 layout: post
 ---
 
-Pathfinding gave me a lot of problems as I went with the clasic A* approach for my game. This worked well except one case. When you don't have a path to a certain point, you might end up traversing all the blocks of a world desperately trying to find one. This can be quite time consuming, and even for a relatively small 100x100 world, you might spend 7ms searching for a path that doesn't exist.
+Pathfinding gave me a lot of problems as I went with the clasic A* approach for my game. This worked well except one case. When you don't have a path to a certain point, you might end up traversing all the blocks of a world desperately trying to find one. This can be quite time consuming, and even for a relatively small 100x100 world, you might spend `7ms` searching for a path that doesn't exist. `7ms` is a huge amount of time from a game frame of `16ms` so I had to do something about this.
 
 ## Intro
 
@@ -14,7 +14,8 @@ However, I did some changes in order to adapt that paper to my use case -- a min
 ## HPA*
 
 So how does it work?  
-The main idea of hierarchical A* is to (you guessed it), create a hierarchy first. So we divide our world into bigger cells,and then compute the path and connection points in between these big cells.
+
+The main idea of hierarchical A* is to (you guessed it), create a hierarchy first. So we divide our world into bigger cells, and then compute the path and connection points in between these big cells.
 
 ![split map](/images/hierarchical_pathfinding/split_world.png "A map being split into high-level cells")
 
@@ -27,7 +28,7 @@ So right now we have a series of connection points for the high level cells. You
 ![connection points](/images/hierarchical_pathfinding/generated_connection_points.png)
 
 Now we add connection points in between these cells. First we start with the external connections. These external connections are between two adjacent high-level cells. All blue cells have an external connection between themselves and the blue cell they are adjacent to that sits on another high-level yellow cell.
-After we've found and cached all external connections, we need to handle the internal connections. These are done by just tryign to get a path with HPA* and checking if all points are in a cell.  Here are our internal connections added.
+After we've found and cached all external connections, we need to handle the internal connections. These are done by just finding a path with HPA* and checking if all points are in a cell.
 
 In the image below we can see the internal connections for the red cell.
 Red and blue connections are the same thing, I used a different color to make things a bit more visible.
@@ -62,5 +63,5 @@ Handling terrain destruction is simple as we only need to re-compute the high-le
 So this is our short journey into HPA*. It is a great way to speed up pathfinding for your games, especially if you're using A* as this comes at an easy integration with your existing pathfinding code. You have to change the core code just slightly and most of the work is done in the initial high-level cell generation.  
 Other ways to speed up pathfinding is using alternative data structures and things like nav meshes.  
 
-I also explained this on my stream a while back so if you like this post in a video format you can watch that explanation [here](https://youtu.be/qSbSb8vMbLI?t=915)
+I also explained this on my stream a while back so if you like this post in a video format you can watch that explanation[here](https://youtu.be/qSbSb8vMbLI?t=915)
 
