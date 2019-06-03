@@ -31,7 +31,7 @@ Now we add connection points in between these cells. First we start with the ext
 After we've found and cached all external connections, we need to handle the internal connections. These are done by just finding a path with HPA* and checking if all points are in a cell.
 
 In the image below we can see the internal connections for the red cell.
-Red and blue connections are the same thing, I used a different color to make things a bit more visible.
+Green and blue connections are the same thing, I used a different color to make things a bit more visible.
 
 ![internal connections](/images/hierarchical_pathfinding/internal_connections.png)
 
