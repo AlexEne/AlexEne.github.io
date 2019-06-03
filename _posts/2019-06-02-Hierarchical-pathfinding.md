@@ -65,5 +65,5 @@ Other ways to speed up pathfinding is using alternative data structures and thin
 
 It's also important to remember that this can go to more than 1 level of hierarchy above the low-level cells. I didn't need to generate another level above this one, but I think for certain games it may be useful to keep in mind that you can extend this.
 
-I also explained this on my stream a while back so if you like this post in a video format you can watch that explanation[here](https://youtu.be/qSbSb8vMbLI?t=915)
+I also explained this on my stream a while back so if you like this post in a video format you can watch that explanation [here](https://youtu.be/qSbSb8vMbLI?t=915).
 
