@@ -60,7 +60,7 @@ Handling terrain destruction is simple as we only need to re-compute the high-le
 
 ## The end
 
-So this is our short journey into HPA*. It is a great way to speed up pathfinding for your games, especially if you're using A* as this comes at an easy integration with your existing pathfinding code. You have to change the core code just slightly and most of the work is done in the initial high-level cell generation.  
+So this is our short journey into HPA* for now. It's a simple technique to speed up pathfinding for your games, especially if you're using A* as this comes at an easy integration with your existing pathfinding code. You have to change the core code just slightly and most of the work is done in the initial high-level cell generation. After implementing it the worst gase went from `7ms` to  `1ms`-`1.5ms`. There are still ways of improving this, like using the _door_ system that they describe in the paper, but for now I am pleased with the results.
 Other ways to speed up pathfinding is using alternative data structures and things like nav meshes.  
 
 It's also important to remember that this can go to more than 1 level of hierarchy above the low-level cells. I didn't need to generate another level above this one, but I think for certain games it may be useful to keep in mind that you can extend this.
