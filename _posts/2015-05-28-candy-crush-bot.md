@@ -95,7 +95,7 @@ After implementing the solution described above I decided that I needed somethin
 Scikit-learn features a lot of great machine learning algorithms and we can pick from any of them and try them out and see what works best.
 I chose SVM.svc - support vector machines. You can read more about them [here](http://scikit-learn.org/stable/modules/svm.html)
 
-This made it faster, but we should not stop here. Let's think how we can make this even faster. One option would be to use downsized pictures when doing the training and prediction. Instead of using the original 71x63 crops, we can easily distinguish between candies even when using 32x32 pictures (a point in 3072 (32 * 32 * 3) dimensions). We could also go lower than that, but I settled for 32x32.
+This made it faster, but we should not stop here. Let's think how we can make this even faster. One option would be to use downsized pictures when doing the training and prediction. Instead of using the original 71x63 crops, we can easily distinguish between candies even when using 32x32 pictures (a point in 3072 (32x32x3) dimensions). We could also go lower than that, but I settled for 32x32.
 
 Now the most important methods for this are the following:  
 ```python
