@@ -77,6 +77,9 @@ jobs:
     - name: test
       run: cargo test
 ```
+## How it looks like
+
+![split map](/images/github-actions-ci/github_actions_ci.gif)
 
 ## Some details
 
