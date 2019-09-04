@@ -3,7 +3,7 @@ layout: post
 title: Github Actions CI with Rust and SDL2
 ---
 
-Github has added a way to have CI with [github actions](https://github.blog/2019-08-08-github-actions-now-supports-ci-cd/) and I decided to try it after I saw [how well it worked](https://github.com/yak32/glw_json/blob/master/.github/workflows/main.yml) for my colleague, Yakov.  
+Github has added CI workflows with [github actions](https://github.blog/2019-08-08-github-actions-now-supports-ci-cd/) and I decided to try it after I saw [how well it worked](https://github.com/yak32/glw_json/blob/master/.github/workflows/main.yml) for my colleague, Yakov.  
 I am doing a game in Rust and I need to test it on Windows, Linux and MacOS.  
 While Windows and Linux tests are easy to run with the help of WSL on my machine, I don't own a Mac so that platform was never tested until now.  
 
@@ -89,3 +89,11 @@ Just doing `sudo apt-get install libsdl2-dev` doesn't work right now as it has a
 
 On Windows I use `windows-2016` it has Visual Studio 2017. For now, that's the newest version supported by rust-hawktracer.  
 After I will update my build script for rust-hawktracer to handle Visual Studio 2019, `windows-latest` will work too.
+
+You can also set it up for PRs like this:
+```yaml
+on:
+  pull_request:
+    branches:
+    - master
+```
