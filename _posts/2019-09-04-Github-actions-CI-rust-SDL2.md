@@ -5,7 +5,7 @@ title: Github Actions CI with Rust and SDL2
 
 Github has added a way to have CI with [github actions](https://github.blog/2019-08-08-github-actions-now-supports-ci-cd/) and I decided to try it after I saw [how well it worked](https://github.com/yak32/glw_json/blob/master/.github/workflows/main.yml) for my colleague, Yakov.  
 I am doing a game in Rust and I need to test it on Windows, Linux and MacOS.  
-However, while windows and Linux tests are easy to do with the help of WSL on my own machine, I don't own a Mac.  
+However, while Windows and Linux tests are easy to do with the help of WSL on my own machine, I don't own a Mac.  
 
 Besides supporting all three platforms I was interested in, Github also [offers](https://github.com/features/actions) a good range of pay as you go prices with a cost per minute of: 0.008$ for Linux, 0.016$ for Windows and 0.08$ for MacOS as well as **2000 minutes of a free tier**.  
 This is great news for hobby projects like mine that happen to be on a private github repository.  
