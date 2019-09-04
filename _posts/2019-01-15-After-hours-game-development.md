@@ -1,5 +1,6 @@
 ---
 layout: post
+title: Github Actions CI with Rust and SDL2
 ---
 
 In my spare time I am working on a dwarf colony management game that's written in rust.  
