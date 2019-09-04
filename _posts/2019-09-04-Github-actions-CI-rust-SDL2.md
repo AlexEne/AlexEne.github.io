@@ -3,7 +3,7 @@ layout: post
 title: Github Actions CI with Rust and SDL2
 ---
 
-Github has added a way to have CI with [github actions](https://github.blog/2019-08-08-github-actions-now-supports-ci-cd/) and I decided to try it after I saw [how well it worked]((https://github.com/yak32/glw_json/blob/master/.github/workflows/main.yml)) for my colleague, Iakov.  
+Github has added a way to have CI with [github actions](https://github.blog/2019-08-08-github-actions-now-supports-ci-cd/) and I decided to try it after I saw [how well it worked](https://github.com/yak32/glw_json/blob/master/.github/workflows/main.yml) for my colleague, Yakov.  
 I am doing a game in Rust and I need to test it on Windows, Linux and MacOS.  
 However, while windows and Linux tests are easy to do with the help of WSL on my own machine, I don't own a Mac.  
 
