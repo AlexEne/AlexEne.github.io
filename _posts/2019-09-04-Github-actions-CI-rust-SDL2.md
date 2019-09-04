@@ -30,7 +30,7 @@ name: Rust
 on: [push]
 
 jobs:
-  test_ubuntu:
+  test_Ubuntu:
 
     runs-on: ubuntu-latest
 
@@ -43,11 +43,12 @@ jobs:
         sudo apt-get install libsdl2-dev
     - name: Build
       run: |
+        rustc --version
         cargo build
-    - name: Run tests
+    - name: Test
       run: cargo test 
       
-  test_on_macOS:
+  test_MacOS:
 
     runs-on: macOS-latest
     
@@ -57,24 +58,24 @@ jobs:
       run: | 
         brew install SDL2
         brew install rustup
-        rustup-init -y --default-toolchain stable
-    - name: build
+        rustup-init -y --default-toolchain stable        
+    - name: Build
       run: |
         export PATH="$HOME/.cargo/bin:$PATH"
         cargo build
-    - name: test
+    - name: Test
       run: |
         export PATH="$HOME/.cargo/bin:$PATH"
         cargo test
       
-  test_on_Windows:
+  test_Windows:
     runs-on: windows-2016
     
     steps:
     - uses: actions/checkout@v1
-    - name: build
+    - name: Build
       run: cargo build
-    - name: test
+    - name: Test
       run: cargo test
 ```
 ## How it looks like
