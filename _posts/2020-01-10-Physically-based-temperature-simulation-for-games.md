@@ -102,7 +102,7 @@ This energy is used to compute a cell's new temperature by plugging `Q` in this 
 
 <div>
 $$
-T_Final = T_Initial + \dfrac{Q}{m*c} 
+T_{Final} = T_{Initial} + \dfrac{Q}{m*c} 
 $$
 </div>
 
