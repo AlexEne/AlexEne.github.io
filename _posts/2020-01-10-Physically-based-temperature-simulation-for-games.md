@@ -111,7 +111,7 @@ You can see how this process is super easy to parallelize, as each cell updates 
 
 ### 2 - Heat propagation to game entities
 
-For this we use the same formulas as above, with a small exception. We just update the game entity's temperature and we don't change the terrain cell temperature based on that game entity. This is for _receiving_ game units (dwarves, objects, cows, etc.). These entities have a MaterialComponent attached to them. That component tracks the temperature and other useful material properties to compute that temperature. Applying the proper formula doesn't yeld nice results due to the unrealistic terrain cell to dwarf size ratio (see bottom of the article).  
+For this we use the same formulas as above, with a small exception. We just update the game entity's temperature and we don't change the terrain cell temperature based on that game entity. This is for _receiving_ game units (dwarves, objects, cows, etc.). These entities have a MaterialComponent attached to them. That component tracks the temperature and other useful material properties to compute that temperature. Applying the proper formula where the dwarf also affects the game cell temperature doesn't yeld nice results due to the unrealistic size ratio between a terrain cell and a dwarf (see bottom of the article).  
 `Emitting` game units like campfires propagate the temperature in the other direction, from them to the terrain.
 
 This is the definition of the `MaterialComponent`:
