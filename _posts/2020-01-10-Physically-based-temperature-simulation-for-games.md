@@ -52,7 +52,7 @@ We intuitively already know that different materials conduct energy at different
 
 If you research this online you find these material constants defined as either `thermal resistivity` or `thermal conductivity`. They are the basically expressing the same thing, but you divide by one and multiply by the other.
 
-For thermal conductivity we have this formula:
+For thermal conduction we have this formula using conductivity:
 <div>
 $$
 \dfrac{Q}{t} = \dfrac{(k * A * {\Delta}T)}{d}
@@ -67,14 +67,14 @@ Where:
 `d` = distance to the point we want to measure the temperature at.  
 `k` = thermal conductivity  
 
-For thermal resistivity the formula will look like:
+If we use thermal resistivity it looks like this:
 <div>
 $$
 \dfrac{Q}{t} = \dfrac{A*{\Delta}T}{resistivity * d} 
 $$
 </div>
 
-I went with the thermal resistivity expression as engineering books seem to favor it and they provide constants for a variety of building materials I have in my game. If you find conductivity values, you can easily switch from one to the other. __Just make sure your units of measurement work out correctly. If you express everything in SI units you will be fine.__
+I went with the thermal resistivity version as engineering books seem to favor it and they provide constants for a variety of building materials I have in my game. If you find conductivity values, you can easily switch from one to the other. __Just make sure your units of measurement work out correctly. If you express everything in SI units you will be fine.__
 
 ## Putting it all together
 
