@@ -16,10 +16,10 @@ I am working on a sim game where you have to take care of a colony of dwarves an
 I want my dwarves to be cold in the winter, get warm in the summer, lose a limb due to frostbites. Many games have already experimented with such systems to some degree (e.g. Don't Starve).
 
 __But can't that be solved with a simple radius check and a decay formula for the temperature transferred?__   
-Yes you can and you should do that, but for me that wasn't enough for a few reasons:
-1) I wanted to have cave temperatures be slowly influenced by  the outside temperatures. E.g. you can grow mushrooms in your cave, but not near the cave entrance as they might need a cooler and more stable temperature.
-2) I want certain plants and foods to preserve better at lower temperatures.
-3) Another thing that complicated my life are walls. If you have a fire in one room near a wall you don't heat the air outside of that room at the same rate as you heat the room.
+Yes you can and you should do that, but for me that wasn't enough for a few reasons:  
+1) I wanted to have cave temperatures be slowly influenced by  the outside temperatures. E.g. you can grow mushrooms in your cave but not near the cave entrance as they might need a cooler and more stable temperature.  
+2) I want certain plants and foods to preserve better at lower temperatures.  
+3) Another thing that complicated my life are walls. If you have a fire in one room near a wall you don't heat the air outside of that room at the same rate as you heat the room.  
 
 ## The solution
 In addition to the reasons mentioned above it is really hard to tune random formulas that have nothing to do with reality. It's way easier to start from a realistic system and formulas and tune that to make it fun.
@@ -32,9 +32,9 @@ Q = m * c * {\Delta}T
 $$
 </div>
 
-`Q` = Heat, measured in `J`oules   
-`m` = mass of the system `g`rams  
-`c` = specific heat capacity of a substance. That is the energy required (heat) such that a unit of mass (g) of that substance will raise its temperature by one unit (`K`elvins).  
+`Q` = Heat, measured in Joules - `J`   
+`m` = mass of the system grams - `g`  
+`c` = specific heat capacity of a substance. That is the energy required (heat) such that a unit of mass (g) of that substance will raise its temperature by one unit (Kelvins - `K`).  
 
 So, as far as units of measurement are, we have an equation of the form:  
 
@@ -44,14 +44,14 @@ J = g * \dfrac{J}{g*K} * K
 $$
 </div>
 
-So it all checks out and we are left with `Q` being measured in `J`oules.
+So it all checks out and we are left with `Q` being measured in Joules.
 
 But just that formula is not enough as it doesn't tell us how two adjacent terrain cells at different temperatures should transfer heat between each other.  
 When two bodies have different temperatures, their molecules have different average kinetic energies (they bounce around at different speeds). When these two bodies are in contact, collisions between moving molecules on the surface of contact will transfer energy from the high-temperature body to the low-temperature one.  
 As that transfer happens, the higher temperature body slightly cools down and the lower temperature body warms up.  
-We intuitively already know that different materials conduct energy at different rates. That's why you have air in between two sheets of glass in  your home. Air is a material that has a high thermal resistivity.
+We intuitively already know that different materials conduct energy at different rates. That's why you have air in between two sheets of glass in your windows. Air is a material that has a high thermal resistivity.
 
-Now, if you research this online you find these material constants defined as either `thermal resistivity` or `thermal conductivity`. They are the basically expressing the same thing, but you divide by one and multiply by the other.
+If you research this online you find these material constants defined as either `thermal resistivity` or `thermal conductivity`. They are the basically expressing the same thing, but you divide by one and multiply by the other.
 
 For thermal conductivity we have this formula:
 <div>
@@ -80,13 +80,12 @@ I went with the thermal resistivity expression as engineering books seem to favo
 ## Putting it all together
 
 The terrain in my game is a 3-D grid of cells (think minecraft-like). Some cells are made of ground, some are air, stone, etc.  
-When I mention terrain below, `air` cells are included.  
 That being said, update cycle that happens for temperatures in my game is made up of the following steps.
 
 ### 0 - Heat propagation from the "sun"
-All terrain cells that _see_ the sky will get their temperatures updated based on some ambient temperature. 
-All the other terrain cells will tend to get towards a different ambient temperature based on how deep they are, hour of day, etc.
-This step is  here to simulate a fake convection and radiation as without it all the map will eventually heat up from a fireplace (as there would be just energy added, and none lost).  
+All terrain cells that _see_ the sky will get their temperatures updated based on some ambient temperature based on the time of day and season. 
+All the other terrain cells will tend to get towards a different ambient temperature based on how deep they are, etc.
+This step is here to simulate a fake convection and radiation. Without it all the map will eventually heat up from a fireplace (as there would be just energy added, and none lost).  
 It's also very easy to tune seasons temperatures like this so that's why nothing complex is going on this step.
 
 ### 1 - Heat propagation for environment (terrain cells)
@@ -99,11 +98,13 @@ $$
 </div>
 
 Using the formula above we compute the average energy a terrain cell is transferring with its neighbors.
-To make things easy, we consider a cell's temperature, the temperature measured at the center of that cell.
-This is then used to compute a cell's new temperature by plugging Q in this equation:
+I consider a cell's temperature as the temperature measured at the center of that cell.
+This energy is used to compute a cell's new temperature by plugging `Q` in this equation:
 
 <div>
+$$
 T_Final = T_Initial + \dfrac{Q}{m*c} 
+$$
 </div>
 
 We have the final temperature of our terrain cell.  
@@ -111,7 +112,7 @@ You can see how this process is super easy to parallelize, as each cell updates 
 
 ### 2 - Heat propagation to game entities
 
-For this we use the same units as above, with a small exception. We just update the game unit's temperature and we don't change the terrain cell temperature based on that game unit. This is for receiving game units (dwarves, objects, cows, etc.). These entities have a material component attached to them. That component tracks the temperature and other useful material properties to compute that temperature. Applying the proper formula doesn't yeld nice results due to the unrealistic terrain cell to dwarf size ratio (see bottom of the article).  
+For this we use the same formulas as above, with a small exception. We just update the game entity's temperature and we don't change the terrain cell temperature based on that game entity. This is for _receiving_ game units (dwarves, objects, cows, etc.). These entities have a MaterialComponent attached to them. That component tracks the temperature and other useful material properties to compute that temperature. Applying the proper formula doesn't yeld nice results due to the unrealistic terrain cell to dwarf size ratio (see bottom of the article).  
 `Emitting` game units like campfires propagate the temperature in the other direction, from them to the terrain.
 
 This is the definition of the `MaterialComponent`:
@@ -144,7 +145,7 @@ __But how do we know the mass, surface area and distance that the heat travels f
 
 Configuring the __distance energy travels__, __mass__ and __surface area__ for each body part component is an interesting exercise, but I am lazy and here I went with an approximation with the goal of keeping things intuitive and easy to set-up.  
 
-The only parameters actually needed to initialize the `MaterialComponent` for an entity are: 
+The only parameters actually needed to initialize the `MaterialComponent` for an entity (head, hand, leg, etc.) are: 
 
 ```json
 {
@@ -155,7 +156,7 @@ The only parameters actually needed to initialize the `MaterialComponent` for an
 }
 ```  
 
-And here is the simple trick I did. Besides the temperature-related `material_properties.json` entry, I also input the density in that table.
+Besides the temperature-related `material_properties.json` entry, I also input the density in that table.
 For example the entry for `"Water"` is:
 
 ```json
@@ -166,17 +167,18 @@ For example the entry for `"Water"` is:
 }
 ```
 
-You probably know where this is going. __For the purpose of temperature transfer, I am approximating all entities to simple shapes (spheres).__
+You probably know where this is going.  
+__For the purpose of temperature transfer, I am approximating all entities to simple shapes (spheres).__
 
 That's where the density comes into play. With it and the mass we can compute the volume of our entity:
 
 <div>
 $$
-Volume = \fracd{Mass}{Density}
+Volume = \dfrac{Mass}{Density}
 $$
 </div>
 
-Having the `Volume`, using a simple formula we can compute the `radius` of the sphere and from that the surface area.  
+Having the `Volume`, using a simple formula we can compute the `radius` of the sphere and from that the `area`.  
 We now have all the data needed, so we do the same calculations using the same formulas we used for the terrain temperature.  
 All `MaterialComponents` can be updated in parallel.
 
@@ -199,6 +201,6 @@ Using spheres will make it a bit tricky to handle clothes as the clothes would n
 I plan on adding more temperature related effects.  
 Conduction is just one way heat is transferred between things. Another way to exchange heat is convection and radiation. I am not sure if I will add them as the effects in this game world will probably be so small it's not worth it.  
 
-And in the end I leave you with this picture of a dwarf and a cow warming up near a fire.
+Because you reached the end of this, I leave you with this cozy picture of a dwarf and a cow warming up near a fire.
 
 ![dwarf_and_cow_by_the_fire](/images/temperature/dwarf_and_cow.png)
