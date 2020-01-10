@@ -6,7 +6,6 @@ comments: true
 > I wish today's games would have accurate temperature simulation...
 
 I hear that all the time.   
-Look no further, if you want to make your game more true to reality in terms of how temperature works I have all you need to get you bootstrapped.  
 We already have physically-based rendering, so why did we stop there?!
 
 ## But... Why?
