@@ -27,8 +27,8 @@ google_analytics: UA-74100659-3
 #   instance: example.com
 
 #Comments
-disqus:
-  shortname: alexene-github-io
+#disqus:
+#  shortname: alexene-github-io
 
 show_excerpts: false # set to true to show excerpts on the homepage
 
