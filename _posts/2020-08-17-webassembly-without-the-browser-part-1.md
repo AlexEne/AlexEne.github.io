@@ -78,7 +78,7 @@ To comile for wasm32-wasi run:
 rustup target add wasm32-wasi
 
 # Compile for the wasm32-wasi target.
-cargo build wasm32-wasi
+cargo build --target wasm32-wasi
 ```
 
 ## But how does `println!()` work?
