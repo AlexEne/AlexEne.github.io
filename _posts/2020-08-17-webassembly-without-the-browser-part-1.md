@@ -38,7 +38,7 @@ First, we need to create a new `lib` project:
 cargo new --lib wasm_example
 ```
 
-In `Config.Toml` add the following:
+In `Cargo.toml` add the following:
 
 ```
 [lib]
@@ -171,7 +171,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-The cargo.toml of this project needs to have the following dependencies:
+The `Cargo.toml` of this project needs to have the following dependencies:
 ```toml
 [dependencies]
 wasmtime = "0.19"
