@@ -8,13 +8,12 @@ However, there is an area where WebAssembly is really powerful but not talked to
 
 ## What is WebAssembly?
 Web people are on a roll of giving bad names to things (web-gpu is another example).  
-WebAssembly is neither web or assembly, but a bytecode that can be targeted from statically types like C++, C#, Rust and others.  
+WebAssembly is neither web or assembly, but a bytecode that can be targeted from languages like C++, C#, Rust and others.  
 This means you can write some Rust code, compile it into WebAssembly and run that code in a WebAssembly virtual machine.  
 
 This is powerful because you won't have to deal with garbage collected scripted languages anymore, and essentially use Rust or C++ as your _scripting language_.  WebAssembly enables predictable and stable performance because it doesn't require garbage collection like the usual options (LUA/JavaScript).
 
 It's a relatively new product and there are a lot of rough edges, especially for out-of-browser scenarios. One of the roughest ones in my experience has been documentation for out-of-browser scenarios and this is the reason for my blog posts, to document my findings and hopefully help some people that may be interested in this subject.  
-
 
 ## Why would we want to run WebAssembly outside of a browser?
 For out of browser scenarios, one of it's main advantage is that it provides system level access without compromising on security. This is done through WASI, the Web Assembly System Interface. [WASI](https://wasi.dev/) is a collection of C-like functions that provide access to functionality such as `fd_read`, `rand`, `fd_write`, threads (WIP), in a safe way.
