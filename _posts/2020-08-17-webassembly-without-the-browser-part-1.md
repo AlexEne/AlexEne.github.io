@@ -6,7 +6,7 @@ comments: true
 Most WebAssembly tutorials and examples you will find online focus on using it inside the browser in order to accelerate your various functionality of a website or web app.  
 However, there is an area where WebAssembly is really powerful but not talked too much about: outside the browser scenario.That usage is what we'll focus on in this series of posts.
 
-# What is WebAssembly?
+## What is WebAssembly?
 Web people are on a roll of giving bad names to things (web-gpu is another example).  
 WebAssembly is neither web or assembly, but a bytecode that can be targeted from statically types like C++, C#, Rust and others.  
 This means you can write some Rust code, compile it into WebAssembly and run that code in a WebAssembly virtual machine.  
@@ -14,7 +14,7 @@ This is powerful because you won't have to deal with garbage collected scripted 
 It's a relatively new product and there are a lot of rough edges, especially for out-of-browser scenarios. One of the roughest ones in my experience has been documentation for out-of-browser scenarios and this is the reason for my blog posts, to document my findings and hopefully help some people that may be interested in this subject.  
 For out of browser scenarios, one of it's main advantage is that it provides system level access without compromising on security. This is done through WASI, the Web Assembly System Interface. [WASI](https://wasi.dev/) is a collection of C-like functions that provide access to functionality such as `fd_read`, `rand`, `fd_write`, threads (WIP), in a safe way.
 
-# Why would we want to run WebAssembly outside of a browser?
+## Why would we want to run WebAssembly outside of a browser?
 It can be used as a scripting language for a video game, to run some code with minimal overhead as Fastly/Cloudflare are doing with their compute-at-edge scenarios, or just running some easy to update code on IoT devices safely and with minimal runtime overhead.   
 WebAssembly doesn't require garbage collection like the usual options (LUA/JS) and this enables predictable and stable performance.  
 
@@ -60,7 +60,7 @@ This a function that takes two numbers, adds them, then prints the result before
 WebAssembly doesn't define a default function that's executed after a module is loaded, so in the host program you need to get a function by it's signature, and run it (quite similar to how `dlopen`/`dlsym` works).  
 We expose this `sum` function (and any other functions we want to call from the host VM) as a function that's callable from `C`, using `[#no_mangle]` and `pub extern "C"`.
 
-# How do we compile it? 
+## How do we compile it? 
 
 Rust supports two targets for WebAssembly: `wasm32-unknown-unknown` and `wasm32-wasi`. The first one is bare-bones WebAssembly. Think of it like the `[#no-std]` of WebAssembly. It's the kind you'd use for the browser that doesn't assume any system functions are available.  
   
@@ -103,7 +103,7 @@ This is a `wat` file. `wat` stands for WebAssembly text format. It's kind of lik
 The import statements here tell us that the WASM program needs the following functions to run `proc_exit`, `fd_write`, `environ_get`, `environ_sizes_get` to exist in the `wasi_snapshot_preview1` namespace.  
 All imported or exported functions from a WebAssembly module require a namespace. `wasi_snapshot_preview1` is the WASI namespace so you can think of it as a reserved namespace for these functions. `println!` needs `wasi_snapshot_preview1::fd_write` to write to stdout.
 
-# The host program
+## The host program
 You can pick any VM that has WASI available. I will use Wasmtime because later on I want to show you how to debug WebAssembly and this VM is the only one where debugging works at the moment.
 
 The program loads the wasm binary file from the path: `examples/wasm_example.wasm`.  
@@ -190,11 +190,11 @@ From host: Answer returned to the host VM: 9
 
 We can observe that the `println!` from the wasm module has correctly printed to the console and that the returned answer is as expected `9`.
 
-# Conclusion
+## Conclusion
 In this post of my WebAssembly Outside the Browser series we've learned how to compile a program for WebAssembly, set-up a host program to load and run a your WASM binary, execute a function exported by the WASM program and put all that together we ended up adding two numbers and printing their result (from both WebAssembly and the host program).  
 In the next parts we will touch areas such as debugging, optimizing program size, exposing functions from the host vm to the WASM program and sharing memory between the two VMs. 
 
-# Bonus study materials
+## Bonus study materials
 Here is the full [WASM specification](https://webassembly.github.io/spec/core/index.html). For me that it's one of the hardest spec that I've ever had to read.  
 I would much rather have this spec similar to a CPU user manual (e.g. [VR4300](http://datasheets.chipdb.org/NEC/Vr-Series/Vr43xx/U10504EJ7V0UMJ1.pdf)), rather than it's current form that is forced into some math-y language that, while correct, brings no extra clarity or insight to the reader.  
 I strongly think that the concepts described there could have been very well expressed in an easier to understand and parse language and I don't buy the usual excuse that _"Well actually, it's targeted at VM writers, not normal people"_. We should just accept that it's not accessible at all, and we could do way better.
