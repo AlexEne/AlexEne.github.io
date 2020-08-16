@@ -18,7 +18,7 @@ It's a relatively new product and there are a lot of rough edges, especially for
 For out of browser scenarios, one of it's main advantage is that it provides system level access without compromising on security. This is done through WASI, the Web Assembly System Interface. [WASI](https://wasi.dev/) is a collection of C-like functions that provide access to functionality such as `fd_read`, `rand`, `fd_write`, threads (WIP), in a safe way.
 
 Here are a few scenarios where you would be able to use web-assembly outside of a browser:
-* It can be used as a scripting language for a video game
+* A scripting language for a video game.
 * To run some code with minimal overhead as Fastly/Cloudflare are doing with their compute-at-edge scenarios.
 * To run some easy to update code on IoT devices safely and with minimal runtime overhead.   
 
@@ -68,8 +68,8 @@ Rust supports two targets for WebAssembly: `wasm32-unknown-unknown` and `wasm32-
   
 At the other end, `wasm32-wasi` assumes that the VM exposes the `WASI` functionality, allowing a different implementation of the standard library to be used (the implementation that depends on the WASI functions to be available).  
 
-You can take a look at the available implementations for the Rust's stdlib here: https://github.com/rust-lang/rust/tree/master/library/std/src/sys   
-This is the implementation that assumes WASI functions are available to the rust program when running in a WebAssembly VM: https://github.com/rust-lang/rust/tree/master/library/std/src/sys/wasi
+You can take a look at the available implementations for the Rust's stdlib here: [https://github.com/rust-lang/rust/tree/master/library/std/src/sys](https://github.com/rust-lang/rust/tree/master/library/std/src/sys)    
+This is the implementation that assumes WASI functions are available to the rust program when running in a WebAssembly VM: [https://github.com/rust-lang/rust/tree/master/library/std/src/sys/wasi](https://github.com/rust-lang/rust/tree/master/library/std/src/sys/wasi).
 
 To comile for wasm32-wasi run:
 ```bash
