@@ -8,8 +8,7 @@ However, there is an area where WebAssembly is really powerful but not talked to
 
 ## What is WebAssembly?
 Web people are on a roll of giving bad names to things (web-gpu is another example).  
-WebAssembly is neither web or assembly, but a bytecode that can be targeted from languages like C++, C#, Rust and others.  
-This means you can write some Rust code, compile it into WebAssembly and run that code in a WebAssembly virtual machine.  
+WebAssembly is neither web or assembly, but a bytecode that can be targeted from languages like C++, C#, Rust and others. This means you can write some Rust code, compile it into WebAssembly and run that code in a WebAssembly virtual machine.  
 
 This is powerful because you won't have to deal with garbage collected scripted languages anymore, and essentially use Rust or C++ as your _scripting language_.  WebAssembly enables predictable and stable performance because it doesn't require garbage collection like the usual options (LUA/JavaScript).
 
@@ -30,13 +29,11 @@ For the best experience in this adventure, I suggest using [Visual Studio Code](
 * `WebAssembly by the WebAssembly foundation`: Allows you to disassemble and inspect `.wasm` binaries.
 
 # Choosing a Virtual Machine
-First you need a Virtual Machine (VM) that can run your WebAssembly program. This VM needs to be embeddable, so you can add it in your game engine, or what we will call from now on __host program__. There are a few to pick from: [WASM3](https://github.com/wasm3/wasm3), [Wasmtime](https://github.com/bytecodealliance/wasmtime), [WAMR](https://github.com/bytecodealliance/wasm-micro-runtime), and many others.  
-They have various characteristics, such as supporting JIT, using as little memory as possible and so on. You have to choose one one that fits your target platform and scenario.  
+First you need a Virtual Machine (VM) that can run your WebAssembly program. This VM needs to be embeddable, so you can add it in your game engine, or what we will call from now on __host program__. There are a few to pick from: [WASM3](https://github.com/wasm3/wasm3), [Wasmtime](https://github.com/bytecodealliance/wasmtime), [WAMR](https://github.com/bytecodealliance/wasm-micro-runtime), and many others. They have various characteristics, such as supporting JIT, using as little memory as possible and so on and you have to choose one one that fits your target platform and scenario.  
 
-It doesn't really matter too much what VM you're choosing besides runtime properties, with the exception of debugging.   
-The only VM that allows for a seamless debugging experience that I've found is Wasmtime (this is another one of those rough edges). So even if you don't plan on deploying that anywhere due to other constraints, I suggest using it as the __debug VM__. Whenever you'd want to debug some WASM code you can launch it with Wasmtime.  
+It doesn't matter too much what VM you're choosing besides runtime properties, with the exception of debugging. The only VM that allows for a seamless debugging experience that I've found is Wasmtime (this is another one of those rough edges). So even if you don't plan on deploying that anywhere due to other constraints, I suggest using it as the __debug VM__. Whenever you'd want to debug some WASM code you can launch it with Wasmtime.  
 
-# Writing our first wasm program
+# Writing our first WebAssembly program
 
 First, we need to create a new `lib` project:
 ```bash
@@ -62,12 +59,11 @@ extern "C" fn sum(a: i32, b: i32) -> i32 {
 ```
 
 This a function that takes two numbers, adds them, then prints the result before returning their sum.  
-WebAssembly doesn't define a default function that's executed after a module is loaded, so in the host program you need to get a function by it's signature, and run it (quite similar to how `dlopen`/`dlsym` works).  
-We expose this `sum` function (and any other functions we want to call from the host VM) as a function that's callable from `C`, using `[#no_mangle]` and `pub extern "C"`.  
-If you're coming here from some WASM for the browser tutorials, you may notice we don't need to use `wasm-bindgen` for our scenario.
+WebAssembly doesn't define a default function that's executed after a module is loaded, so in the host program you need to get a function by it's signature, and run it (quite similar to how `dlopen`/`dlsym` works).
+
+We expose this `sum` function (and any other functions we want to call from the host VM) as a function that's callable from `C`, using `[#no_mangle]` and `pub extern "C"`. If you're coming here from some WASM for the browser tutorials, you may notice we don't need to use `wasm-bindgen` at all.
 
 ## How do we compile it? 
-
 Rust supports two targets for WebAssembly: `wasm32-unknown-unknown` and `wasm32-wasi`. The first one is bare-bones WebAssembly. Think of it like the `[#no-std]` of WebAssembly. It's the kind you'd use for the browser that doesn't assume any system functions are available.  
   
 At the other end, `wasm32-wasi` assumes that the VM exposes the `WASI` functionality, allowing a different implementation of the standard library to be used (the implementation that depends on the WASI functions to be available).  
@@ -86,8 +82,10 @@ cargo build wasm32-wasi
 
 ## But how does `println!()` work?
 You may have noticed that we're calling `println!()` and expecting the program to work and print to the console, but how does a WebAssembly program knows how to do that?  
-This is why we're using `wasm32-wasi`. This target selects for the rust stdlib the version that assumes some functionality to be there (the `WASI` functions). Printing to the console means just writing to a special file descriptor. Most VMs allow that by default so we don't need to do any special settings, besides compiling the correct `wasm32-wasi` target.
-If you have installed the required extensions for vscode, you can now right click on `target/wasm32-wasi/debug/wasm_example.wasm` and select `Show WebAssembly`. You should have a new file open in vscode that looks like this:
+
+This is why we're using `wasm32-wasi`. This target selects for the rust stdlib the version that assumes some functionality to be there (the `WASI` functions). Printing to the console means just writing to a special file descriptor. Most VMs allow that by default so we don't need to do any special settings, besides compiling the correct `wasm32-wasi` target.  
+
+If you have installed the required extensions for vscode, you can now right click on `target/wasm32-wasi/debug/wasm_example.wasm` and select `Show WebAssembly` and you should have a new file open in vscode that looks like this:
 
 ```s
 (module
@@ -113,8 +111,7 @@ All imported or exported functions from a WebAssembly module require a namespace
 You can pick any VM that has WASI available. I will use Wasmtime because later on I want to show you how to debug WebAssembly and this VM is the only one where debugging works at the moment.
 
 The program loads the wasm binary file from the path: `examples/wasm_example.wasm`.  
-This is the file you have previously compiled that you can find in `wasm_example/target/wasm32-wasi/debug/wasm_example.wasm`.  
-__Make sure you move it in the right place before running the host program.__
+This is the file you have previously compiled that you can find in `wasm_example/target/wasm32-wasi/debug/wasm_example.wasm`. __Make sure you move it in the right place before running the host program.__
 
 Here is the full listing of the host VM rust program that initializes the Wasmtime VM, loads the module, links against WASI and loads and executes the exported `sum` function from the WASM module:
 
