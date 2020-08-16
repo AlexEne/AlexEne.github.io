@@ -3,8 +3,8 @@ layout: post
 comments: true
 ---
 
-Most WebAssembly tutorials and examples you will find online focus on using it inside the browser in order to accelerate your various functionality of a website or web app.  
-However, there is an area where WebAssembly is really powerful but not talked too much about: outside the browser scenario.That usage is what we'll focus on in this series of posts.
+Most WebAssembly tutorials and examples you will find online focus on using it inside the browser in order to accelerate various functionality of a website or web app.  
+However, there is an area where WebAssembly is really powerful but not talked too much about: outside the browser scenario. That is what we'll focus on in this series of posts.
 
 ## What is WebAssembly?
 Web people are on a roll of giving bad names to things (web-gpu is another example).  
@@ -58,7 +58,8 @@ extern "C" fn sum(a: i32, b: i32) -> i32 {
 
 This a function that takes two numbers, adds them, then prints the result before returning their sum.  
 WebAssembly doesn't define a default function that's executed after a module is loaded, so in the host program you need to get a function by it's signature, and run it (quite similar to how `dlopen`/`dlsym` works).  
-We expose this `sum` function (and any other functions we want to call from the host VM) as a function that's callable from `C`, using `[#no_mangle]` and `pub extern "C"`.
+We expose this `sum` function (and any other functions we want to call from the host VM) as a function that's callable from `C`, using `[#no_mangle]` and `pub extern "C"`.  
+If you're coming here from some WASM for the browser tutorials, you may notice we don't need to use `wasm-bindgen` for our scenario.
 
 ## How do we compile it? 
 
