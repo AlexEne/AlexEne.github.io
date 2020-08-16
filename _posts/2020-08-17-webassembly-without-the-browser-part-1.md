@@ -20,7 +20,8 @@ For out of browser scenarios, one of it's main advantage is that it provides sys
 Here are a few scenarios where you would be able to use web-assembly outside of a browser:
 * A scripting language for a video game.
 * To run some code with minimal overhead as Fastly/Cloudflare are doing with their compute-at-edge scenarios.
-* To run some easy to update code on IoT devices safely and with minimal runtime overhead.   
+* To run some easy to update code on IoT devices safely and with minimal runtime overhead.  
+* Extreamly fast programs in environments where you can't JIT for _reasons_. 
 
 ## Prerequisites
 For the best experience in this adventure, I suggest using [Visual Studio Code](https://code.visualstudio.com/) as your IDE and install the following extensions: 
@@ -47,7 +48,7 @@ In `Cargo.toml` add the following:
 crate-type = ["cdylib"]
 ```
 
-Now we can edit `lib.rs` and export the following `C` function from it:
+Now we can edit `lib.rs` and export the following `C` FFI compatible function from it:
 
 ```rust
 #[no_mangle]
