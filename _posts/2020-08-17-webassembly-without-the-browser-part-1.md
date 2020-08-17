@@ -105,7 +105,7 @@ If you have installed the required extensions for vscode, you can now right clic
 
 This is a `wat` file. `wat` stands for WebAssembly text format. It's kind of like looking at x64/ARM ASM instructions when disassembling a binary, just uglier and harder to understand. I have read that this was because the creators of WebAssembly couldn't decide on a text format so they just left it in this ugly s-expression form.
 
-The import statements here tell us that the WASM program needs the following functions to run `proc_exit`, `fd_write`, `environ_get`, `environ_sizes_get` to exist in the `wasi_snapshot_preview1` namespace.  
+The import statements here tell us that the WASM program needs the following functions `proc_exit`, `fd_write`, `environ_get`, `environ_sizes_get` to exist in the `wasi_snapshot_preview1` namespace.  
 All imported or exported functions from a WebAssembly module require a namespace. `wasi_snapshot_preview1` is the WASI namespace so you can think of it as a reserved namespace for these functions. `println!` needs `wasi_snapshot_preview1::fd_write` to write to stdout.
 
 ## The host program
