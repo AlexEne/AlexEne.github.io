@@ -4,7 +4,7 @@ comments: true
 ---
 
 Most WebAssembly tutorials and examples you will find online focus on using it inside the browser in order to accelerate various functionality of a website or web app.  
-However, there is an area where WebAssembly is really powerful but not talked too much about: outside the browser scenario. That is what we'll focus on in this series of posts.
+However, there is an area where WebAssembly is really powerful but not talked too much about: outside the browser usage scenarios. That is what we'll focus on in this series of posts.
 
 ## What is WebAssembly?
 Web people are on a roll of giving bad names to things (web-gpu is another example).  
@@ -15,7 +15,7 @@ This is powerful because you won't have to deal with garbage collected scripted 
 It's a relatively new product and there are a lot of rough edges, especially for out-of-browser scenarios. One of the roughest ones in my experience has been documentation for out-of-browser scenarios and this is the reason for my blog posts, to document my findings and hopefully help some people that may be interested in this subject.  
 
 ## Why would we want to run WebAssembly outside of a browser?
-For out of browser scenarios, one of it's main advantage is that it provides system level access without compromising on security. This is done through WASI, the Web Assembly System Interface. [WASI](https://wasi.dev/) is a collection of C-like functions that provide access to functionality such as `fd_read`, `rand`, `fd_write`, threads (WIP), in a safe way.
+For out of browser scenarios, one of its main advantage is that it provides system level access without compromising on security. This is done through WASI, the Web Assembly System Interface. [WASI](https://wasi.dev/) is a collection of C-like functions that provide access to functionality such as `fd_read`, `rand`, `fd_write`, threads (WIP), in a safe way.
 
 Here are a few scenarios where you would be able to use web-assembly outside of a browser:
 * A scripting language for a video game.
