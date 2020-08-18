@@ -211,7 +211,8 @@ Videos:
 Reading material:  
 [WebAssembly.org](https://webassembly.org/)  
 [Standardizing WASI: A system interface to run WebAssembly outside the web](https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/)  
-[Cliff L. Biffle: Making really tiny WebAssembly graphics demos](http://cliffle.com/blog/bare-metal-wasm/)
+[Cliff L. Biffle: Making really tiny WebAssembly graphics demos](http://cliffle.com/blog/bare-metal-wasm/)  
+[An overview of WebAssembly's historical context](https://labs.imaginea.com/talk-the-nuts-and-bolts-of-webassembly/)
 
 
 
