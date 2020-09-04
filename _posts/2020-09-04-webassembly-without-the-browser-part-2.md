@@ -2,15 +2,15 @@
 layout: post
 ---
 
-In [part-1](https://alexene.dev/2020/08/17/webassembly-without-the-browser-part-1.html) we have learned how to set up WebAssembly VM to run a simple rust program that can add two numbers and print the result to stdout. In part 2 we will go over __Debugging__ and __Binary size__. 
+In [part 1](https://alexene.dev/2020/08/17/webassembly-without-the-browser-part-1.html) we have learned how to set up WebAssembly VM to run a simple rust program that can add two numbers and print the result to stdout. In part 2 we will go over __Debugging__ and __Binary size__. 
 
 ## Debugging
-Debugging WebAssembly is one of the rough edges of WebAssembly. To understand why this is a rough edge, we must first have a high-level understanding on how a WebAssembly VM works. We can split them into two categories: WASM VMs with JIT and WASM VMs without JIT. Right now, debugging is possible only for JIT-enabled VM e.g.: [Wasmtime](https://github.com/bytecodealliance/wasmtime).
+Debugging is one of the rough edges of WebAssembly. To understand why this is a rough edge, we must first have a high-level understanding on how a WebAssembly VM works. We can split them into two categories: WASM VMs with JIT and WASM VMs without JIT. Right now, debugging is possible only for JIT-enabled VM e.g.: [Wasmtime](https://github.com/bytecodealliance/wasmtime).
 
-The reason why I mentioned JIT-enabled VMs is that this is the key functionality that they use to enable a seamless debugging experience between the host program (the one that uses the VM) and the WebAssembly program. We usually use GDB or LLDB to debug the host programs. To make this work, Wasmtime generates the JIT code, then it patches the debug info for the rust WebAssembly binary and calls a magical function named: `__jit_debug_register_code`. This function is intercepted by GDB/LLDB and the JITed WebAssembly code can be debugged in the same session as the host program. It tells LLDB that this JIT-generated code has that patched debug information. Pretty neat!
+JIT is the key functionality that they use to enable a seamless debugging experience between the host program (the one that uses the VM) and the WebAssembly program. We usually use GDB or LLDB to debug the host programs. For example, to make this work, Wasmtime generates the JIT code, then it patches the debug info for the rust WebAssembly binary and calls a magical function named: `__jit_debug_register_code`. After this function is intercepted by GDB/LLDB and the JITed WebAssembly code can be debugged in the same session as the host program. It tells LLDB that this JIT-generated code has that patched debug information. Pretty neat!
 
-In order for us to debug WebAssembly, there are a few key ingredients that we have to do:  
-1. Visual Studio Code as our IDE (makes step 2 and 3 possible).
+In order for us to debug WebAssembly, there are a few key steps that we have to take:  
+1. Use Visual Studio Code as our IDE (makes step 2 and 3 possible).
 2. Install CodeLLDB plugin for VSCode. Other GDB/LLDB plugins are fine but this good on Linux/OSX/Windows too.
 3. Tell Wasmtime to emit debug information. We use the configuration object (full program can be found in [part 1](https://alexene.dev/2020/08/17/webassembly-without-the-browser-part-1.html) of this series): `let engine = Engine::new(Config::new().debug_info(true));`
 4. Set up Visual Studio Code `launch.json` as if you'd be debugging the host program. For example:
@@ -34,7 +34,7 @@ Here is a screenshot of me debugging a WebAssembly program (on the right) and th
 If you're deploying software to a place where a JIT-only VM can't go, you're stuck maintaining two VMs in your host program: one you're using for debug purposes and one that actually ships to the platform you're interested in. I expect that with time more VMs that include debug protocols and more debuggers will appear. Maybe they will use simpler protocols that don't require gdb server to be present on the target platform in order to remotely debug and inspect some code, and just require the VM to be built with a debugger-enabled compile option.
 
 ## Binary size
-One of the neat tricks you can do with WebAssembly is update your programs without requiring any program to be re-deployed on the devices you're using this on. Other uses involve some sort of compute-at-edge scenarios like Fastly, Cloudflare and others are doing. This is better explained by this [video](https://www.youtube.com/watch?v=vqBtoPJoQOE).  
+One of the neat tricks you can do with WebAssembly is update your programs without requiring any native code to be re-deployed on the devices you're using this on. Other uses involve some sort of compute-at-edge scenarios like Fastly, Cloudflare and others are doing. This is better explained by this [video](https://www.youtube.com/watch?v=vqBtoPJoQOE).  
 
 In all of the cases above, or places where disk space is a concern, binary size is one dimension we will need to care about when using WebAssembly. This is rough edge number 2.
 
@@ -54,6 +54,6 @@ Beyond that, here are some tools that will help you push size optimizations furt
 4. Most articles on WebAssembly size optimization will suggest replacing the default rust allocator with [wee_alloc](https://github.com/rustwasm/wee_alloc).
 
 Articles that may be helpful:
-1. https://rustwasm.github.io/book/reference/code-size.html#optimizing-builds-for-code-size  
-2. http://cliffle.com/blog/bare-metal-wasm/
+1. [https://rustwasm.github.io/book/reference/code-size.html#optimizing-builds-for-code-size](https://rustwasm.github.io/book/reference/code-size.html#optimizing-builds-for-code-size)  
+2. [http://cliffle.com/blog/bare-metal-wasm/](http://cliffle.com/blog/bare-metal-wasm/)
  
